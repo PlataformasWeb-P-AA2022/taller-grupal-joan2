@@ -1,36 +1,35 @@
 {% extends 'master.html' %}
 
-{% block title %} Crear Docentes {% endblock %}
+{% block title %} Crear Matrícula {% endblock %}
 {% block content %}
-    <h1 style="width: 100%">Agregar docente</h1>
+    <h1 style="width: 100%">Agregar Matrícula</h1>
     <form method="post">
         <p>
-            <label for="nombre">Docente</label>
+            <label for="nombre">Nombre</label>
             <input type="text" name="nombre"
-                   placeholder="Nombre del Dueno" required>
+                   placeholder="Ingrese el nombre del propietario" required>
             </input>
         </p>
 
         <p>
-            <label for="placa">PLaca</label>
+            <label for="placa">Placa</label>
             <input type="text" name="placa"
-                   placeholder="PLaca" required>
+                   placeholder="Ingrese placa del vehículo" required>
             </input>
         </p>
 
         <p>
-            <label for="ano Matricula">ano Matricula/label>
-            <input type="text" name="matricula"
-                   placeholder="Ciudad del docente" required>
+            <label for="anio">Año</label>
+            <input type="text" name="anio"
+                   placeholder="Ingrese año de matrícula" required>
             </input>
         </p>
         <p>
-            <label for="costo">Costo/label>
-            <input type=int name="costo"
-                   placeholder="Costo" required>
+            <label for="costo">Costo</label>
+            <input type="text" name="costo"
+                   placeholder="Ingrese costo de la matrícula" required>
             </input>
         </p>
-
         <p>
             <button type="submit">Submit</button>
         </p>

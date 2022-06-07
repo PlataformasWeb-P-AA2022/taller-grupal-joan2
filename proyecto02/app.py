@@ -17,75 +17,73 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-class Matriculas(db.Model):
+class Docente(db.Model):
 
-    __tablename__ = 'matricula'
+    __tablename__ = 'docentes'
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(200))
-    placa = db.Column(db.String(200))
-    anoMatricula = db.Column(db.Intenger, nullable=False)
-    costo= db.Column(db.Intenger, nullable=False)
-     # este atributo no puede ser nulo
-
+    placa = db.Column(db.String(200), nullable=False)
+    anio = db.Column(db.String(200), nullable=False) # este atributo no puede ser nulo
+    costo = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
-        return "Matriculas: nombre=%s placa=%s anoMatricula=%d costo=%d" % (
+        return "Matricula: nombre=%s placa=%s año:%s % costo=%s "(
                           self.nombre,
                           self.placa,
-                          self.anoMatricula,
+                          self.anio,
                           self.costo)
 
 # vista
 
 @app.route('/')
 def index():
-    matricula = Matriculas.query.all()
-    return render_template('index.html', matricula=matricula)
+    docentes = Docente.query.all()
+    return render_template('index.html', docentes=docentes)
 
 
-@app.route('/<int:matricula_id>/')
-def docente(matricula_id):
-    matricula = Matriculas.query.get_or_404(matricula_id)
-    return render_template('matricula.html', matricula=matricula)
+@app.route('/<int:docente_id>/')
+def docente(docente_id):
+    docente = Docente.query.get_or_404(docente_id)
+    return render_template('docente.html', docente=docente)
 
 
-@app.route('/add/matricula/', methods=('GET', 'POST'))
+@app.route('/add/docente/', methods=('GET', 'POST'))
 def crear():
     if request.method == 'POST':
         nombre = request.form['nombre']
         placa = request.form['placa']
-        anoMatricula = request.form['anoMatricula']
+        anio = request.form['anio']
         costo = request.form['costo']
-        matriculacion = Matriculas(nombre=nombre,
-                             placa = placa,
-                             anoMatricula = anoMatricula,
-                             costo = costo
+        profesor = Docente(nombre=nombre,
+                          placa=placa,
+                          anio=anio,
+                          costo=costo,
                           )
-        db.session.add(matriculacion)
+        db.session.add(profesor)
         db.session.commit()
         return redirect(url_for('index'))
 
     return render_template('crear.html')
 
 
-@app.route('/editar/matricula/<int:matricula_id>/', methods=('GET', 'POST'))
-def editar(matricula_id):
-    matricula = Matriculas.query.get_or_404(matricula_id)
+@app.route('/editar/docente/<int:docente_id>/', methods=('GET', 'POST'))
+def editar(docente_id):
+    docente = Docente.query.get_or_404(docente_id)
 
     if request.method == 'POST':
         nombre = request.form['nombre']
         placa = request.form['placa']
-        anoMatricula = request.form['anoMatricula']
-        costo= request.form['costo']
+        anio = request.form['anio']
+        costo = request.form['costo']
 
-        matricula.nombre = nombre
-        matricula.placa = placa
-        matricula.anoMatricula= anoMatricula
-        costo.costo= costo
-        db.session.add(matricula)
+        docente.nombre = nombre
+        docente.placa = placa
+        docente.anio = anio
+        docente.costo = costo
+        db.session.add(docente)
         db.session.commit()
 
         return redirect(url_for('index'))
 
-    return render_template('editar.html', docente=matricula)
+    return render_template('editar.html', docente=docente)

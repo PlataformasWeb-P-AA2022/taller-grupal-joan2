@@ -5,33 +5,33 @@ from config import enlace
 
 engine = create_engine(enlace)
 
-from app import Matriculas
+from app import Docente
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
 # se crea un objetos de tipo Docente
-cliente1 = Matriculas(nombre="Tony", placa="123-ASD", \
-        anoMatricula= 2012, costo = 2000)
+docente1 = Docente(nombre="Tony", placa="SGH-0306", \
+        anio="2005", costo="300")
 
-cliente2 = Matriculas(nombre="Andres", placa="1453-ASJ", \
-        anoMatricula= 2017, costo = 42000)
+docente2 = Docente(nombre="Luis", placa="SLP-0201", \
+        anio="2003", costo="200")
 
-cliente3 = Matriculas(nombre="Carlos", placa="1223-TSD", \
-        anoMatricula= 2022, costo = 3400)
+docente3 = Docente(nombre="Ana", placa="SIO-0214", \
+        anio="2000", costo="100")
 
-cliente4 = Matriculas(nombre="Jhoselin", placa="0123-ESD", \
-        anoMatricula= 2021, costo = 2300)
+docente4 = Docente(nombre="Monica", placa="LJK-0201", \
+        anio="2001", costo="100")
 
 # se agrega los objetos
 # a la sesión
 # a la espera de un commit
 # para agregar un registro a la base de
 # datos
-session.add(cliente1)
-session.add(cliente2)
-session.add(cliente3)
-session.add(cliente4)
+session.add(docente1)
+session.add(docente2)
+session.add(docente3)
+session.add(docente4)
 
 # se confirma las transacciones
 session.commit()

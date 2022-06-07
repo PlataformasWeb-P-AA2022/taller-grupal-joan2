@@ -1,39 +1,39 @@
 {% extends 'master.html' %}
 
-{% block title %} Editar Matricula {% endblock %}
+{% block title %} Editar Matrículas {% endblock %}
 {% block content %}
     <h1 style="width: 100%">
-        Editar Matricula - {{ matricula.id }}
+        Editar Matrícula - {{ docente.id }}
     </h1>
     <form method="post">
         <p>
-            <label for="nombre">Docente</label>
+            <label for="nombre">Nombre</label>
             <input type="text" name="nombre"
-                   value={{ matricula.nombre }}
-                   placeholder="Nombre del Dueno" required>
+                   value={{ docente.nombre }}
+                   placeholder="Nombre del Propietario" required>
             </input>
         </p>
 
         <p>
-            <label for="placa">PLaca</label>
+            <label for="placa">Placa</label>
             <input type="text" name="placa"
-                   value={{ matricula.placa }}
-                   placeholder="PLaca" required>
+                   value={{ docente.placa }}
+                   placeholder="PLaca del Vehículo" required>
             </input>
         </p>
 
         <p>
-            <label for="ano Matricula">ano Matricula/label>
-            <input type="text" name="matricula"
-                   value={{ matricula.anoMatricula }}
-                   placeholder="Ciudad del docente" required>
+            <label for="anio">Año</label>
+            <input type="text" name="anio"
+                   value={{ docente.anio }}
+                   placeholder="Año de la matrícula" required>
             </input>
         </p>
         <p>
-            <label for="costo">Costo/label>
-            <input type=int name="costo"
-                   value={{ matricula.costo }}
-                   placeholder="Costo" required>
+            <label for="costo">Costo</label>
+            <input type="text" name="costo"
+                   value={{ docente.costo }}
+                   placeholder="Costo de matricula" required>
             </input>
         </p>
         <p>
